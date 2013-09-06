@@ -11,6 +11,7 @@ var buyAxe = new Image();
 var buyMiner = new Image();
 var gold = new Image();
 var money = 0;
+var level = 1;
 var over = "none";
 var cost150 = new Image();
 var cost250 = new Image();
@@ -36,412 +37,6 @@ var archers = [];
 var miners = [];
 var axemen = [];
 //and arrays of monsters
-
-//create src changers
-function updateSword(swordsman){
-	switch(swordsman.mode){
-		case "running":
-			switch(swordsman.currentSlide){
-				case 0:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0000.png";
-					break;
-				case 1:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0001.png";
-					break;
-				case 2:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0002.png";
-					break;
-				case 3:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0003.png";
-					break;
-				case 4:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0004.png";
-					break;
-				case 5:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0005.png";
-					break;
-				case 6:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0006.png";
-					break;
-				case 7:
-					swordsman.img.src = "sprites/swordsoldier/swordstan rennt e0007.png";
-					break;
-			}
-			if(swordsman.isAlive === true){
-				if(swordsman.currentSlide < swordsman.slides - 1){
-					swordsman.currentSlide += 1;
-				} else {
-					swordsman.currentSlide = 0;
-				}
-			}
-			break;
-		case "walking":
-			switch(swordsman.currentSlide){
-				case 0:
-					swordsman.img.src = "sprites/swordsoldier/walk1.png";
-					break;
-				case 1:
-					swordsman.img.src = "sprites/swordsoldier/walk2.png";
-					break;
-				case 2:
-					swordsman.img.src = "sprites/swordsoldier/walk3.png";
-					break;
-				case 3:
-					swordsman.img.src = "sprites/swordsoldier/walk4.png";
-					break;
-				case 4:
-					swordsman.img.src = "sprites/swordsoldier/walk5.png";
-					break;
-				case 5:
-					swordsman.img.src = "sprites/swordsoldier/walk6.png";
-					break;
-				case 6:
-					swordsman.img.src = "sprites/swordsoldier/walk7.png";
-					break;
-				case 7:
-					swordsman.img.src = "sprites/swordsoldier/walk8.png";
-					break;
-				case 8:
-					swordsman.img.src = "sprites/swordsoldier/walk9.png";
-					break;
-			}
-			if(swordsman.isAlive === true){
-				if(swordsman.currentSlide < swordsman.slides - 1){
-					swordsman.currentSlide += 1;
-				} else {
-					swordsman.currentSlide = 0;
-				}
-			}
-			break;
-		case "getting hit":
-			switch(swordsman.currentSlide){
-				case 0:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0000.png";
-					break;
-				case 1:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0001.png";
-					break;
-				case 2:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0002.png";
-					break;
-				case 3:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0003.png";
-					break;
-				case 4:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0004.png";
-					break;
-				case 5:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0005.png";
-					break;
-				case 6:
-					swordsman.img.src = "sprites/swordsoldier/swordstan treffer e0006.png";
-					break;
-			}
-			if(swordsman.isAlive === true){
-				if(swordsman.currentSlide < swordsman.slides - 1){
-					swordsman.currentSlide += 1;
-				} else {
-					swordsman.currentSlide = 0;
-				}
-			}
-			break;
-		case "dead":
-			switch(swordsman.currentSlide){
-				case 0:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0000.png";
-					break;
-				case 1:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0001.png";
-					break;
-				case 2:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0002.png";
-					break;
-				case 3:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0003.png";
-					break;
-				case 4:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0004.png";
-					break;
-				case 5:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0005.png";
-					break;
-				case 6:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0006.png";
-					break;
-				case 7:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0007.png";
-					break;
-				case 8:
-					swordsman.img.src = "sprites/swordsoldier/swordstan kippt um e0008.png";
-					break;
-				case 30:
-					swordsman.img.src = "";
-					break;
-			}
-			swordsman.currentSlide += 1;
-			if(swordsman.currentSlide >= 8){
-				swordsman.isAlive = false;
-			}
-			break;
-		case "attacking":
-			switch(swordsman.currentSlide){
-				case 0:
-					swordsman.img.src = "sprites/swordsoldier/attack e0000.png";
-					break;
-				case 1:
-					swordsman.img.src = "sprites/swordsoldier/attack e0001.png";
-					break;
-				case 2:
-					swordsman.img.src = "sprites/swordsoldier/attack e0002.png";
-					break;
-				case 3:
-					swordsman.img.src = "sprites/swordsoldier/attack e0003.png";
-					break;
-				case 4:
-					swordsman.img.src = "sprites/swordsoldier/attack e0004.png";
-					break;
-				case 5:
-					swordsman.img.src = "sprites/swordsoldier/attack e0005.png";
-					break;
-				case 6:
-					swordsman.img.src = "sprites/swordsoldier/attack e0006.png";
-					break;
-				case 7:
-					swordsman.img.src = "sprites/swordsoldier/attack e0007.png";
-					break;
-				case 8:
-					swordsman.img.src = "sprites/swordsoldier/attack e0008.png";
-					break;
-				case 9:
-					swordsman.img.src = "sprites/swordsoldier/attack e0009.png";
-					break;
-				case 10:
-					swordsman.img.src = "sprites/swordsoldier/attack e0010.png";
-					break;
-				case 11:
-					swordsman.img.src = "sprites/swordsoldier/attack e0011.png";
-					break;
-				case 12:
-					swordsman.img.src = "sprites/swordsoldier/attack e0012.png";
-					break;
-			}
-			if(swordsman.isAlive === true){
-				if(swordsman.currentSlide < swordsman.slides - 1){
-					swordsman.currentSlide += 1;
-				} else {
-					swordsman.currentSlide = 0;
-				}
-			}
-			break;
-	}
-}
-function updateArcher(archer){
-	switch(archer.mode){
-		case "running":
-			switch(archer.currentSlide){
-				case 0:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0000.png";
-					break;
-				case 1:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0001.png";
-					break;
-				case 2:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0002.png";
-					break;
-				case 3:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0003.png";
-					break;
-				case 4:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0004.png";
-					break;
-				case 5:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0005.png";
-					break;
-				case 6:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0006.png";
-					break;
-				case 7:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0007.png";
-					break;
-				case 8:
-					archer.img.src = "sprites/bowsoldier/bowstan rennt e0008.png";
-					break;
-			}
-			if(archer.isAlive === true){
-				if(archer.currentSlide < archer.slides - 1){
-					archer.currentSlide += 1;
-				} else {
-					archer.currentSlide = 0;
-				}
-			}
-			break;
-		case "walking":
-			switch(archer.currentSlide){
-				case 0:
-					archer.img.src = "sprites/bowsoldier/walk1.png";
-					break;
-				case 1:
-					archer.img.src = "sprites/bowsoldier/walk2.png";
-					break;
-				case 2:
-					archer.img.src = "sprites/bowsoldier/walk3.png";
-					break;
-				case 3:
-					archer.img.src = "sprites/bowsoldier/walk4.png";
-					break;
-				case 4:
-					archer.img.src = "sprites/bowsoldier/walk5.png";
-					break;
-				case 5:
-					archer.img.src = "sprites/bowsoldier/walk6.png";
-					break;
-				case 6:
-					archer.img.src = "sprites/bowsoldier/walk7.png";
-					break;
-				case 7:
-					archer.img.src = "sprites/bowsoldier/walk8.png";
-					break;
-				case 8:
-					archer.img.src = "sprites/bowsoldier/walk9.png";
-					break;
-			}
-			if(archer.isAlive === true){
-				if(archer.currentSlide < archer.slides - 1){
-					archer.currentSlide += 1;
-				} else {
-					archer.currentSlide = 0;
-				}
-			}
-			break;
-		case "getting hit":
-			switch(archer.currentSlide){
-				case 0:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0000.png";
-					break;
-				case 1:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0001.png";
-					break;
-				case 2:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0002.png";
-					break;
-				case 3:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0003.png";
-					break;
-				case 4:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0004.png";
-					break;
-				case 5:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0005.png";
-					break;
-				case 6:
-					archer.img.src = "sprites/bowsoldier/bowstan treffer e0006.png";
-					break;
-			}
-			if(archer.isAlive === true){
-				if(archer.currentSlide < archer.slides - 1){
-					archer.currentSlide += 1;
-				} else {
-					archer.currentSlide = 0;
-				}
-			}
-			break;
-		case "dead":
-			switch(archer.currentSlide){
-				case 0:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0000.png";
-					break;
-				case 1:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0001.png";
-					break;
-				case 2:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0002.png";
-					break;
-				case 3:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0003.png";
-					break;
-				case 4:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0004.png";
-					break;
-				case 5:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0005.png";
-					break;
-				case 6:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0006.png";
-					break;
-				case 7:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0007.png";
-					break;
-				case 8:
-					archer.img.src = "sprites/bowsoldier/bowstan kippt um e0008.png";
-					break;
-				case 30:
-					archer.img.src = "";
-					break;
-			}
-			archer.currentSlide += 1;
-			if(archer.currentSlide >= 8){
-				archer.isAlive = false;
-			}
-			break;
-		case "attacking":
-			switch(archer.currentSlide){
-				case 0:
-					archer.img.src = "sprites/bowsoldier/attack e0000.png";
-					break;
-				case 1:
-					archer.img.src = "sprites/bowsoldier/attack e0001.png";
-					break;
-				case 2:
-					archer.img.src = "sprites/bowsoldier/attack e0002.png";
-					break;
-				case 3:
-					archer.img.src = "sprites/bowsoldier/attack e0003.png";
-					break;
-				case 4:
-					archer.img.src = "sprites/bowsoldier/attack e0004.png";
-					break;
-				case 5:
-					archer.img.src = "sprites/bowsoldier/attack e0005.png";
-					break;
-				case 6:
-					archer.img.src = "sprites/bowsoldier/attack e0006.png";
-					break;
-				case 7:
-					archer.img.src = "sprites/swordsoldier/attack e0007.png";
-					break;
-				case 8:
-					archer.img.src = "sprites/swordsoldier/attack e0008.png";
-					break;
-				case 9:
-					archer.img.src = "sprites/swordsoldier/attack e0009.png";
-					break;
-				case 10:
-					archer.img.src = "sprites/swordsoldier/attack e0010.png";
-					break;
-				case 11:
-					archer.img.src = "sprites/swordsoldier/attack e0011.png";
-					break;
-				case 12:
-					archer.img.src = "sprites/swordsoldier/attack e0012.png";
-					break;
-			}
-			if(archer.isAlive === true){
-				if(archer.currentSlide < archer.slides - 1){
-					archer.currentSlide += 1;
-				} else {
-					archer.currentSlide = 0;
-				}
-			}
-			break;
-	}
-}
-function updateMiner(miner){
-	
-}
-function updateAxe(axe){
-	
-}
-//...and the monsters
 
 //create soldier types
 function Swordsman(){
@@ -483,13 +78,211 @@ function Swordsman(){
 		this.speed = 0;
 		this.mode = "getting hit";
 	};
+	this.update = function(){
+		this.x += this.speed;
+		switch(this.mode){
+			case "running":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/swordsoldier/swordstan rennt e0007.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "walking":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/swordsoldier/walk1.png";
+						break;
+					case 1:
+						this.img.src = "sprites/swordsoldier/walk2.png";
+						break;
+					case 2:
+						this.img.src = "sprites/swordsoldier/walk3.png";
+						break;
+					case 3:
+						this.img.src = "sprites/swordsoldier/walk4.png";
+						break;
+					case 4:
+						this.img.src = "sprites/swordsoldier/walk5.png";
+						break;
+					case 5:
+						this.img.src = "sprites/swordsoldier/walk6.png";
+						break;
+					case 6:
+						this.img.src = "sprites/swordsoldier/walk7.png";
+						break;
+					case 7:
+						this.img.src = "sprites/swordsoldier/walk8.png";
+						break;
+					case 8:
+						this.img.src = "sprites/swordsoldier/walk9.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "getting hit":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/swordsoldier/swordstan treffer e0006.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "dead":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0007.png";
+						break;
+					case 8:
+						this.img.src = "sprites/swordsoldier/swordstan kippt um e0008.png";
+						break;
+					case 30:
+						this.img.src = "";
+						break;
+				}
+				this.currentSlide += 1;
+				if(this.currentSlide >= 8){
+					this.isAlive = false;
+				}
+				break;
+			case "attacking":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/swordsoldier/attack e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/swordsoldier/attack e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/swordsoldier/attack e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/swordsoldier/attack e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/swordsoldier/attack e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/swordsoldier/attack e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/swordsoldier/attack e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/swordsoldier/attack e0007.png";
+						break;
+					case 8:
+						this.img.src = "sprites/swordsoldier/attack e0008.png";
+						break;
+					case 9:
+						this.img.src = "sprites/swordsoldier/attack e0009.png";
+						break;
+					case 10:
+						this.img.src = "sprites/swordsoldier/attack e0010.png";
+						break;
+					case 11:
+						this.img.src = "sprites/swordsoldier/attack e0011.png";
+						break;
+					case 12:
+						this.img.src = "sprites/swordsoldier/attack e0012.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+		}
+	}
 }
 function Bowman(){
 	this.mode = "walking";
 	this.health = 3;
 	this.damage = 1;
 	this.slides = 9;
-	this.speed = 3;
+	this.speed = 1.5;
 	this.currentSlide = 0;
 	this.isAlive = true;
 	this.x = 50;
@@ -505,7 +298,7 @@ function Bowman(){
 	};
 	this.walk = function(){
 		this.slides = 9;
-		this.speed = 2;
+		this.speed = 1.5;
 		this.mode = "walking";
 	};
 	this.die = function(){
@@ -523,6 +316,204 @@ function Bowman(){
 		this.speed = 0;
 		this.mode = "getting hit";
 	};
+	this.update = function(){
+		this.x += this.speed;
+		switch(this.mode){
+			case "running":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/bowsoldier/bowstan rennt e0007.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "walking":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/bowsoldier/walk1.png";
+						break;
+					case 1:
+						this.img.src = "sprites/bowsoldier/walk2.png";
+						break;
+					case 2:
+						this.img.src = "sprites/bowsoldier/walk3.png";
+						break;
+					case 3:
+						this.img.src = "sprites/bowsoldier/walk4.png";
+						break;
+					case 4:
+						this.img.src = "sprites/bowsoldier/walk5.png";
+						break;
+					case 5:
+						this.img.src = "sprites/bowsoldier/walk6.png";
+						break;
+					case 6:
+						this.img.src = "sprites/bowsoldier/walk7.png";
+						break;
+					case 7:
+						this.img.src = "sprites/bowsoldier/walk8.png";
+						break;
+					case 8:
+						this.img.src = "sprites/bowsoldier/walk9.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "getting hit":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/bowsoldier/bowstan treffer e0006.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+			case "dead":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0007.png";
+						break;
+					case 8:
+						this.img.src = "sprites/bowsoldier/bowstan kippt um e0008.png";
+						break;
+					case 30:
+						this.img.src = "";
+						break;
+				}
+				this.currentSlide += 1;
+				if(this.currentSlide >= 8){
+					this.isAlive = false;
+				}
+				break;
+			case "attacking":
+				switch(this.currentSlide){
+					case 0:
+						this.img.src = "sprites/bowsoldier/attack e0000.png";
+						break;
+					case 1:
+						this.img.src = "sprites/bowsoldier/attack e0001.png";
+						break;
+					case 2:
+						this.img.src = "sprites/bowsoldier/attack e0002.png";
+						break;
+					case 3:
+						this.img.src = "sprites/bowsoldier/attack e0003.png";
+						break;
+					case 4:
+						this.img.src = "sprites/bowsoldier/attack e0004.png";
+						break;
+					case 5:
+						this.img.src = "sprites/bowsoldier/attack e0005.png";
+						break;
+					case 6:
+						this.img.src = "sprites/bowsoldier/attack e0006.png";
+						break;
+					case 7:
+						this.img.src = "sprites/bowsoldier/attack e0007.png";
+						break;
+					case 8:
+						this.img.src = "sprites/bowsoldier/attack e0008.png";
+						break;
+					case 9:
+						this.img.src = "sprites/bowsoldier/attack e0009.png";
+						break;
+					case 10:
+						this.img.src = "sprites/bowsoldier/attack e0010.png";
+						break;
+					case 11:
+						this.img.src = "sprites/bowsoldier/attack e0011.png";
+						break;
+					case 12:
+						this.img.src = "sprites/bowsoldier/attack e0012.png";
+						break;
+				}
+				if(this.isAlive === true){
+					if(this.currentSlide < this.slides - 1){
+						this.currentSlide += 1;
+					} else {
+						this.currentSlide = 0;
+					}
+				}
+				break;
+		}
+	}
 }
 function Axeman(){
 	this.mode = "running";
@@ -618,6 +609,7 @@ function addSword(){
 }
 //and then add monsters
 
+//timer function
 function tick(){
 	update();
 	draw();
@@ -682,6 +674,7 @@ function draw(){
 	dude.draw();
 }
 function update(){
+	money += 0.3;
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	if(mouse.x >= 200 && mouse.x <= 200 + buyMiner.width && mouse.y >= 3 && mouse.y <= 3 + buyMiner.height){
 		over = "miner";
@@ -698,10 +691,7 @@ function update(){
 	} else {
 		over = "nothing";
 	}
-	updateArcher(dude);
-	money += 0.3;
-	dude.x += dude.speed;
-	dude.walk();
+	dude.update();
 }
 function distance(x,y,x2,y2){
 	var answer = (x2 - x)*(x2 - x);
