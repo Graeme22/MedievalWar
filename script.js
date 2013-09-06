@@ -30,7 +30,6 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var rect = canvas.getBoundingClientRect();
 var FPS = 10;
-var dude = new Bowman();
 //create arrays of soldiers
 var swords = [];
 var archers = [];
